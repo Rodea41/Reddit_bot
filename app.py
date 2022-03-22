@@ -1,15 +1,13 @@
 import praw
 
-reddit = praw.Reddit(
-    client_id="xxxxx",
-    client_secret="xxxxx",
-    user_agent="xxxxx",
-    username="xxxxx",
-    password="xxxxxx"
+reddit = praw.Reddit('bot1')
 
-)
+subreddit = reddit.subreddit("learnpython")
+##subreddit = reddit.subreddit("AedorBotTest")
 
-subreddit = reddit.subreddit("AedorBotTest")
+
+print(reddit.user.me())
+
 
 for submission in subreddit.top(limit=1):
     print("************")
