@@ -1,4 +1,5 @@
 import praw
+import re 
 
 #! Login credentials are in the "praw.ini" file
 reddit = praw.Reddit('bot1')
@@ -8,6 +9,21 @@ subreddit = reddit.subreddit("Eldenring") #! Will change the subreddit later onc
 
 #! Prints the name of the account that is logged in
 print(reddit.user.me())
+
+#! FILTER COMMENTS AND SEE IF BOT IS CALLED
+def check_comment(comment):
+    stringComment = str.lower(comment) #CONVERT TO STRING AND LOWERCASE
+    commentRegex = re.compile(r"test_bot") # <== REGEX FILTER LOOKS FOR 'test_bot' (lowercase sensitive)
+    match = commentRegex.search(stringComment) # RUN THE SEARCH FILTER ON COMMENT.BODY
+    
+    if bool(match): #IF REGEX IS GREATER THAN 0 ==> OUR FILTER FOUND SOMEONE CALLING THE BOT
+        return True
+    else:
+        return False
+
+
+
+
 
 for comment in subreddit.stream.comments(skip_existing=True):
     print("This is a comment ")
@@ -22,39 +38,3 @@ for comment in subreddit.stream.comments(skip_existing=True):
     if comment.body == "football_stats_bot": 
         """ Need to respond to 'football_stats_bot (WR, C. Kupp, year(optional))'    """
         
-        if comment.body has 'WR':
-            pass
-            if comment.body
-        
-        elif comment.body has 'QB':
-            pass
-
-        elif comment.body has 'RB':
-            pass
-
-        elif comment.body has 'K':
-            pass
-
-        elif comment.body has 'TE':
-            pass
-
-        else:
-            print("That is not a position I recognize")
-
-
-
-
-
-
-
-
-
-
-
-"""
-        if hasattr(comment, "body"):
-            comment_lower = comment.body.lower()
-            if " Cooper Kupp " in comment_lower:
-                print("-----------------")
-                print(comment.body)
-"""
