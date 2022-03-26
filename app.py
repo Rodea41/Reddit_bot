@@ -9,6 +9,12 @@ subreddit = reddit.subreddit("Eldenring") #! Will change the subreddit later onc
 #! Prints the name of the account that is logged in
 print(reddit.user.me())
 
+
+for comment in subreddit.stream.comments(skip_existing=True):
+    print("This is a comment ")
+    print(comment.body)
+    print("  ")
+''' 
 for comment in subreddit.stream.comments(skip_existing=True):
     print("This is a comment ")
     print(comment.body)
@@ -39,7 +45,7 @@ for comment in subreddit.stream.comments(skip_existing=True):
             pass
 
         else:
-            print("That is not a position I recognize")
+            print("That is not a position I recognize") '''
 
 
 
